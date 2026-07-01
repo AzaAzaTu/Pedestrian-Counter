@@ -1,18 +1,17 @@
 # Подсчет пешеходов на переходе
 
-Проект представляет собой веб-приложение для автоматического обнаружения и подсчета пешеходов на изображениях пешеходного перехода.
-
-Для поиска объектов используется нейронная сеть YOLO, а для обработки и сохранения результата используется библиотека OpenCV.
-
-## Версия приложения
-
 **Pedestrian Counter v 1.0.0**
 
-## Автор
+Проект представляет собой веб-приложение для подсчета пешеходов на изображении.
+Система использует YOLO для поиска людей и OpenCV для обработки изображения.
 
-**AzaTu**
+> **English**
+> This project is a web application for counting pedestrians in an image.
+> The system uses YOLO to detect people and OpenCV to process the image.
 
-## Используемые технологии
+---
+
+## Технологии
 
 * Python
 * Flask
@@ -22,18 +21,24 @@
 * HTML
 * CSS
 
-## Возможности проекта
+> **English**
+> Technologies used: Python, Flask, YOLO, OpenCV, SQLite, HTML and CSS.
 
-* загрузка изображения через веб-интерфейс;
-* проверка формата загружаемого файла;
-* обработка изображения с помощью YOLO;
+---
+
+## Возможности
+
+* загрузка изображения;
 * поиск объектов класса `person`;
 * отрисовка рамок вокруг найденных пешеходов;
-* подсчет количества найденных объектов;
-* сохранение исходного изображения;
-* сохранение обработанного изображения;
+* подсчет количества людей;
 * сохранение истории обработки в SQLite;
-* отображение истории запросов на странице.
+* отображение результата на веб-странице.
+
+> **English**
+> Features: image upload, `person` detection, bounding box drawing, pedestrian counting, SQLite history saving and result display on a web page.
+
+---
 
 ## Структура проекта
 
@@ -62,158 +67,85 @@ pedestrian_counter/
     └── db.py
 ```
 
-## Описание основных файлов
+> **English**
+> The project contains the Flask application, HTML template, CSS styles, image folders, database file and utility modules.
 
-### app.py
+---
 
-Основной файл приложения.
-В нем запускается Flask-сервер, принимается изображение от пользователя, вызывается модуль детекции и передаются данные на HTML-страницу.
+## Описание файлов
 
-### utils/detector.py
+`app.py` — основной файл Flask-приложения.
+`utils/detector.py` — обработка изображения и вызов YOLO.
+`utils/db.py` — работа с базой данных SQLite.
+`templates/index.html` — веб-интерфейс.
+`static/style.css` — оформление страницы.
+`static/uploads/` — исходные изображения.
+`static/results/` — обработанные изображения.
 
-Файл отвечает за обработку изображения.
-В нем загружается модель YOLO, выполняется поиск объектов класса `person`, отрисовываются рамки и подсчитывается количество найденных пешеходов.
+> **English**
+> `app.py` starts the Flask app.
+> `detector.py` runs YOLO detection.
+> `db.py` works with SQLite.
+> `index.html` is the web interface.
+> `style.css` contains page styles.
 
-### utils/db.py
+---
 
-Файл отвечает за работу с базой данных SQLite.
-В базе данных сохраняется история обработки изображений.
+## Запуск проекта
 
-### templates/index.html
+1. Откройте папку проекта в Visual Studio Code.
 
-HTML-страница веб-приложения.
-На ней находится форма загрузки изображения, вывод результата и таблица истории обработки.
-
-### static/style.css
-
-Файл оформления страницы.
-
-### static/uploads/
-
-Папка для хранения исходных загруженных изображений.
-
-### static/results/
-
-Папка для хранения обработанных изображений.
-
-## Как запустить проект
-
-### 1. Скачать проект
-
-Сначала нужно скачать проект с GitHub или открыть папку проекта на компьютере.
-
-Если проект скачан архивом, его нужно распаковать.
-
-### 2. Открыть проект в Visual Studio Code
-
-Откройте Visual Studio Code.
-
-Далее выберите:
-
-```text
-File → Open Folder
-```
-
-После этого выберите папку проекта.
-
-### 3. Открыть терминал
-
-В Visual Studio Code откройте терминал:
-
-```text
-Terminal → New Terminal
-```
-
-### 4. Создать виртуальное окружение
-
-В терминале выполните команду:
+2. Создайте виртуальное окружение:
 
 ```bash
 python -m venv .venv
 ```
 
-Если команда не сработала, можно попробовать:
-
-```bash
-py -m venv .venv
-```
-
-### 5. Активировать виртуальное окружение
-
-Для Windows выполните команду:
+3. Активируйте окружение:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-После активации в начале строки терминала должно появиться:
-
-```text
-(.venv)
-```
-
-### 6. Установить зависимости
-
-Установите необходимые библиотеки:
+4. Установите зависимости:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 7. Запустить приложение
-
-Выполните команду:
+5. Запустите приложение:
 
 ```bash
 python app.py
 ```
 
-Если команда не сработала, можно попробовать:
-
-```bash
-py app.py
-```
-
-После запуска в терминале появится адрес локального сервера.
-
-Обычно он выглядит так:
+6. Откройте в браузере:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-### 8. Открыть приложение
+> **English**
+> Open the project folder, create a virtual environment, activate it, install dependencies, run `python app.py`, and open `http://127.0.0.1:5000` in a browser.
 
-Откройте браузер и перейдите по адресу:
+---
 
-```text
-http://127.0.0.1:5000
-```
+## Использование
 
-После этого откроется главная страница приложения.
+1. Откройте сайт.
+2. Выберите изображение с пешеходным переходом.
+3. Нажмите кнопку запуска обработки.
+4. Посмотрите количество найденных пешеходов.
+5. Проверьте обработанное изображение с рамками.
 
-## Как пользоваться приложением
+> **English**
+> Open the app, upload a crossing image, start processing and check the detected pedestrian count with bounding boxes.
 
-1. Открыть веб-приложение в браузере.
-2. Нажать кнопку выбора файла.
-3. Выбрать изображение с пешеходным переходом.
-4. Нажать кнопку «Запустить обработку».
-5. Дождаться обработки изображения.
-6. Посмотреть количество найденных пешеходов.
-7. Посмотреть обработанное изображение с рамками.
-8. Проверить запись в истории обработки.
+---
 
 ## Очистка истории
 
-Перед отправкой проекта можно очистить историю обработки и старые изображения.
-
-Сначала остановите Flask-сервер в терминале:
-
-```bash
-Ctrl + C
-```
-
-Затем выполните команды:
+Перед отправкой проекта можно удалить старую историю и изображения:
 
 ```powershell
 Remove-Item .\database\history.db -Force -ErrorAction SilentlyContinue
@@ -221,24 +153,21 @@ Remove-Item .\static\uploads\* -Force -Recurse -ErrorAction SilentlyContinue
 Remove-Item .\static\results\* -Force -Recurse -ErrorAction SilentlyContinue
 ```
 
-После следующего запуска приложения база данных будет создана заново.
+После следующего запуска база данных создастся заново.
+
+> **English**
+> These commands remove the database and old images. The database will be created again after restarting the app.
+
+---
 
 ## Возможные ошибки
 
-### Ошибка: table requests has no column named pedestrian_count
+### Не запускается Python
 
-Такая ошибка может возникнуть, если осталась старая база данных от другого проекта.
-
-Для исправления нужно пересоздать таблицу:
-
-```powershell
-python -c "from utils.db import DB_PATH, init_db; import sqlite3; conn=sqlite3.connect(DB_PATH); conn.execute('DROP TABLE IF EXISTS requests'); conn.commit(); conn.close(); init_db(); print('Таблица истории пересоздана')"
-```
-
-После этого запустите приложение заново:
+Попробуйте:
 
 ```bash
-python app.py
+py app.py
 ```
 
 ### Не устанавливаются библиотеки
@@ -249,36 +178,37 @@ python app.py
 python -m pip install --upgrade pip
 ```
 
-После этого снова выполните:
+Затем снова выполните:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Не открывается сайт
+### Ошибка `no column named pedestrian_count`
 
-Проверьте, что приложение запущено в терминале.
+Пересоздайте таблицу истории:
 
-Также убедитесь, что открываете правильный адрес:
-
-```text
-http://127.0.0.1:5000
+```powershell
+python -c "from utils.db import DB_PATH, init_db; import sqlite3; conn=sqlite3.connect(DB_PATH); conn.execute('DROP TABLE IF EXISTS requests'); conn.commit(); conn.close(); init_db(); print('Таблица истории пересоздана')"
 ```
 
-## Ограничения проекта
+> **English**
+> If the database has an old structure, recreate the `requests` table using the command above.
 
-В текущей версии приложение обрабатывает только статические изображения.
+---
 
-Обработка видео не реализована.
+## Ограничения
 
-Также система подсчитывает все найденные объекты класса `person`, поэтому если на изображении есть люди вне пешеходного перехода, они тоже могут быть учтены.
+Приложение обрабатывает только изображения.
+Система считает все найденные объекты класса `person`, поэтому люди вне перехода также могут попасть в подсчет.
 
-В дальнейшем можно добавить выделение области интереса, чтобы учитывать только пешеходов, находящихся непосредственно на переходе.
+> **English**
+> The app processes images only. It counts all detected `person` objects, so people outside the crossing may also be counted.
 
-## Тема проекта
+---
 
-**Подсчет пешеходов на переходе с использованием YOLO и OpenCV**
+## Автор
 
-## Copyright
+**AzaTu**
 
 © AzaTu
