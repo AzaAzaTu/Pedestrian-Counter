@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подсчет пешеходов на переходе</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>Подсчет пешеходов на переходе</h1>
+                <p>Веб-приложение для обнаружения и подсчета пешеходов на изображениях</p>
+            </div>
+
+            <div class="header-label">
+                -`♡´-YOLO + OpenCV-`♡´-
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>1. Загрузка фото</h3>
+                <p>Пользователь выбирает изображение с пешеходным переходом.</p>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="info-card">
+                <h3>2. Обработка</h3>
+                <p>Модель YOLO находит объекты класса person.</p>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="info-card">
+                <h3>3. Результат</h3>
+                <p>Система показывает количество найденных пешеходов.</p>
+            </div>
+        </div>
+
+        <div class="main-card">
+            <h2>Загрузка изображения</h2>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="error">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="image" accept=".jpg,.jpeg,.png,.webp" required>
+                <button type="submit">Запустить обработку</button>
+            </form>
+
+            <p class="small-text">
+                Поддерживаются форматы JPG, JPEG, PNG и WEBP.
+            </p>
+        </div>
+
+        {% if result_image %}
+        <div class="result-card">
+            <div class="result-top">
+                <div>
+                    <h2>Результат обработки</h2>
+                    <p>На изображении найдено пешеходов:</p>
+                </div>
+
+                <div class="counter">
+                    {{ pedestrian_count }}
+                </div>
+            </div>
+
+            <div class="images-grid">
+                <div>
+                    <h3>Исходное изображение</h3>
+                    <img src="{{ uploaded_image }}" alt="Исходное изображение" class="photo">
+                </div>
+
+                <div>
+                    <h3>Обработанное изображение</h3>
+                    <img src="{{ result_image }}" alt="Обработанное изображение" class="photo">
+                </div>
+            </div>
+
+            {% if objects %}
+            <h3>Найденные объекты</h3>
+
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Класс</th>
+                    <th>Уверенность</th>
+                </tr>
+
+                {% for obj in objects %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ obj.class_name }}</td>
+                    <td>{{ obj.confidence }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="main-card">
+            <h2>История обработки</h2>
+
+            {% if history %}
+            <table>
+                <tr>
+                    <th>Дата и время</th>
+                    <th>Файл</th>
+                    <th>Количество пешеходов</th>
+                </tr>
+
+                {% for row in history %}
+                <tr>
+                    <td>{{ row.timestamp }}</td>
+                    <td>{{ row.original_filename }}</td>
+                    <td>{{ row.pedestrian_count }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                <p>История обработки пока пустая.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>Pedestrian Counter v 1.0.0</p>
+        <p>© AzaTu</p>
+        <p>[ 0x1F4BB ]</p>
+    </footer>
+
+</body>
+</html>
