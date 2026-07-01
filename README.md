@@ -143,23 +143,6 @@ http://127.0.0.1:5000
 
 ---
 
-## Очистка истории
-
-Перед отправкой проекта можно удалить старую историю и изображения:
-
-```powershell
-Remove-Item .\database\history.db -Force -ErrorAction SilentlyContinue
-Remove-Item .\static\uploads\* -Force -Recurse -ErrorAction SilentlyContinue
-Remove-Item .\static\results\* -Force -Recurse -ErrorAction SilentlyContinue
-```
-
-После следующего запуска база данных создастся заново.
-
-> **English**
-> These commands remove the database and old images. The database will be created again after restarting the app.
-
----
-
 ## Возможные ошибки
 
 ### Не запускается Python
@@ -183,19 +166,6 @@ python -m pip install --upgrade pip
 ```bash
 pip install -r requirements.txt
 ```
-
-### Ошибка `no column named pedestrian_count`
-
-Пересоздайте таблицу истории:
-
-```powershell
-python -c "from utils.db import DB_PATH, init_db; import sqlite3; conn=sqlite3.connect(DB_PATH); conn.execute('DROP TABLE IF EXISTS requests'); conn.commit(); conn.close(); init_db(); print('Таблица истории пересоздана')"
-```
-
-> **English**
-> If the database has an old structure, recreate the `requests` table using the command above.
-
----
 
 ## Ограничения
 
