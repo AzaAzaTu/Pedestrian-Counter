@@ -3,3 +3,5 @@ ultralytics
 opencv-python
 numpy
 pillow
+openpyxl
+reportlab
