@@ -16,7 +16,7 @@
             </div>
 
             <div class="header-label">
-                -`♡´-YOLO + OpenCV-`♡´-
+                YOLO + OpenCV
             </div>
         </div>
     </div>
@@ -115,7 +115,17 @@
         {% endif %}
 
         <div class="main-card">
-            <h2>История обработки</h2>
+            <div class="history-header">
+                <div>
+                    <h2>История обработки</h2>
+                    <p class="small-text">Историю можно сохранить в Excel или PDF.</p>
+                </div>
+
+                <div class="export-buttons">
+                    <a href="{{ url_for('export_excel') }}" class="export-button">Скачать Excel</a>
+                    <a href="{{ url_for('export_pdf') }}" class="export-button pdf">Скачать PDF</a>
+                </div>
+            </div>
 
             {% if history %}
             <table>
