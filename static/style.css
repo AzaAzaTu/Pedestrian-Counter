@@ -177,6 +177,43 @@ button:hover {
     border-radius: 6px;
 }
 
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.export-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.export-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #16a34a;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.export-button:hover {
+    background-color: #15803d;
+}
+
+.export-button.pdf {
+    background-color: #dc2626;
+}
+
+.export-button.pdf:hover {
+    background-color: #b91c1c;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -228,6 +265,11 @@ th {
     }
 
     .result-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-header {
         flex-direction: column;
         align-items: flex-start;
     }
