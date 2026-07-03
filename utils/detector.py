@@ -50,6 +50,7 @@ class PedestrianDetector:
             )
 
             label = f"pedestrian {conf:.2f}"
+
             cv2.putText(
                 image,
                 label,
